@@ -35,8 +35,9 @@ public class ClientController {
         Client c = new Client(name, address, id);
         //uniqueness
         for (int j = 0; j < _dataManager.Clients.size(); j++) {
-            if (_dataManager.Clients.get(j).equals(c)) {
+            if (_dataManager.Clients.get(j).equals(c)  || _dataManager.Clients.get(j).idClient == c.idClient  ) {
                 return "Client already exists!";
+//                System.out.println("Client already exists!");
             }
         }
         try {
