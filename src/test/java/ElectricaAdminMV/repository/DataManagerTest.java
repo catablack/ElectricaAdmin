@@ -8,12 +8,12 @@ import junit.framework.TestCase;
  */
 public class DataManagerTest extends TestCase {
 
-    DataManager dm = new DataManager();
+    private DataManager dm = new DataManager();
 
     public void testSaveChanges() {
 
         dm.Clients.add(new Client("Cata","strada","1"));
-        assert(dm.Clients.get(0).idClient == "1");
+        assert(dm.Clients.get(0).idClient.equals("1"));
 
     }
 

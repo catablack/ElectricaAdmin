@@ -1,10 +1,8 @@
 package ElectricaAdminMV.controller;
 
-import java.util.ArrayList;
-
 import ElectricaAdminMV.model.Client;
-import ElectricaAdminMV.repository.*;
-import ElectricaAdminMV.model.*;
+import ElectricaAdminMV.model.Issue;
+import ElectricaAdminMV.repository.DataManager;
 
 public class ClientController {
     private DataManager _dataManager;
@@ -14,7 +12,7 @@ public class ClientController {
     }
 
     private String ValidateClient(String name, String address, String id) {
-        if (!name.equals("") && !address.equals("") && !name.equals(" ")) {
+        if (!name.equals("") && !address.equals("") && !name.equals(" ") && !id.equals("")) {
             for (int i = 0; i < name.length(); i++) {
                 if ((!Character.isUpperCase(name.charAt(i))) && (!Character.isLowerCase(name.charAt(i))) && (!Character.isSpaceChar(name.charAt(i)))) {
                     return "Invalid character: " + name.charAt(i);
@@ -35,7 +33,7 @@ public class ClientController {
         Client c = new Client(name, address, id);
         //uniqueness
         for (int j = 0; j < _dataManager.Clients.size(); j++) {
-            if (_dataManager.Clients.get(j).equals(c)  || _dataManager.Clients.get(j).idClient == c.idClient  ) {
+            if (_dataManager.Clients.get(j).equals(c)  || _dataManager.Clients.get(j).idClient.equals(c.idClient)) {
                 return "Client already exists!";
 //                System.out.println("Client already exists!");
             }
@@ -94,17 +92,15 @@ public class ClientController {
     }
 
     public String ListIssue(Client c) {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         String pen = "";
-        Double total = 0.0;
-        Issue last = null, beforeLast;
         for (int i = 0; i < _dataManager.Issues.size(); i++) {
             if (_dataManager.Issues.get(i).Client.equals(c)) {
-                pen += String.format("Year: %d, Month: %d, Penalty: %2.0f\n");
-                s += pen;
+                pen += "Year: %d, Month: %d, Penalty: %2.0f\n";
+                s.append(pen);
             }
         }
-        return s;
+        return s.toString();
     }
 
 }
