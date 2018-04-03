@@ -1,5 +1,6 @@
 package ElectricaAdminMV.repository;
 
+import ElectricaAdminMV.model.Client;
 import junit.framework.TestCase;
 
 /**
@@ -7,8 +8,13 @@ import junit.framework.TestCase;
  */
 public class DataManagerTest extends TestCase {
 
+    DataManager dm = new DataManager();
+
     public void testSaveChanges() {
-        assert(true);
+
+        dm.Clients.add(new Client("Cata","strada","1"));
+        assert(dm.Clients.get(0).idClient == "1");
+
     }
 
     public void testGetInvoicesList() {
