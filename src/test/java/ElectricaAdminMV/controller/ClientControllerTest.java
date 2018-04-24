@@ -19,6 +19,9 @@ public class ClientControllerTest extends TestCase {
 
     public void testAddClient() {
         controller.AddClient("Test","Sdr","1");
+        controller.AddClient("","Sdr","1");
+        controller.AddClient("Test","Sdr","1");
+
     }
 
     public void testAddClientIndex() {
